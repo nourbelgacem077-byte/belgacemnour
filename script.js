@@ -101,3 +101,43 @@ cvBtn.addEventListener("click", e => { e.stopPropagation(); setCv(cvList.hidden)
 cvList.addEventListener("click", () => setCv(false));
 document.addEventListener("click", e => { if (!e.target.closest(".cv-menu")) setCv(false); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") setCv(false); });
+<script>
+document.querySelectorAll('.slider').forEach(function (slider) {
+  var dotsBox = slider.querySelector('.slider__dots');
+  var index = 0, timer = null, DELAY = 3000;
+
+  function slides() { return slider.querySelectorAll('img'); }
+
+  function buildDots() {
+    dotsBox.innerHTML = '';
+    slides().forEach(function () { dotsBox.appendChild(document.createElement('span')); });
+  }
+
+  function show(i) {
+  var imgs = slides();
+  if (!imgs.length) return;
+  index = (i + imgs.length) % imgs.length;
+  imgs.forEach(function (img, n) { img.classList.toggle('is-active', n === index); });
+  dotsBox.querySelectorAll('span').forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
+  var cap = slider.querySelector('.slider__caption');
+  if (cap) cap.textContent = imgs[index].dataset.caption || '';
+}
+
+  function start() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    stop();
+    timer = setInterval(function () { show(index + 1); }, DELAY);
+  }
+  function stop() { clearInterval(timer); }
+
+  // wait a moment so images that fail to load (onerror) are removed first
+  window.addEventListener('load', function () {
+    buildDots();
+    show(0);
+    if (slides().length > 1) start();
+  });
+
+  slider.addEventListener('mouseenter', stop);
+  slider.addEventListener('mouseleave', start);
+});
+</script>
