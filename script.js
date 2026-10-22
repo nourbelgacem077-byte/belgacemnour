@@ -101,7 +101,7 @@ cvBtn.addEventListener("click", e => { e.stopPropagation(); setCv(cvList.hidden)
 cvList.addEventListener("click", () => setCv(false));
 document.addEventListener("click", e => { if (!e.target.closest(".cv-menu")) setCv(false); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") setCv(false); });
-<script>
+// Project image sliders
 document.querySelectorAll('.slider').forEach(function (slider) {
   var dotsBox = slider.querySelector('.slider__dots');
   var index = 0, timer = null, DELAY = 3000;
@@ -114,14 +114,14 @@ document.querySelectorAll('.slider').forEach(function (slider) {
   }
 
   function show(i) {
-  var imgs = slides();
-  if (!imgs.length) return;
-  index = (i + imgs.length) % imgs.length;
-  imgs.forEach(function (img, n) { img.classList.toggle('is-active', n === index); });
-  dotsBox.querySelectorAll('span').forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
-  var cap = slider.querySelector('.slider__caption');
-  if (cap) cap.textContent = imgs[index].dataset.caption || '';
-}
+    var imgs = slides();
+    if (!imgs.length) return;
+    index = (i + imgs.length) % imgs.length;
+    imgs.forEach(function (img, n) { img.classList.toggle('is-active', n === index); });
+    dotsBox.querySelectorAll('span').forEach(function (d, n) { d.classList.toggle('is-active', n === index); });
+    var cap = slider.querySelector('.slider__caption');
+    if (cap) cap.textContent = imgs[index].dataset.caption || '';
+  }
 
   function start() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -130,7 +130,7 @@ document.querySelectorAll('.slider').forEach(function (slider) {
   }
   function stop() { clearInterval(timer); }
 
-  // wait a moment so images that fail to load (onerror) are removed first
+  // wait for the page to load so images that fail (onerror) are removed first
   window.addEventListener('load', function () {
     buildDots();
     show(0);
@@ -140,4 +140,3 @@ document.querySelectorAll('.slider').forEach(function (slider) {
   slider.addEventListener('mouseenter', stop);
   slider.addEventListener('mouseleave', start);
 });
-</script>
