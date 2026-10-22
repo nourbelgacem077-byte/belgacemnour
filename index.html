@@ -245,6 +245,24 @@
         <div class="projects">
 
           <article class="project reveal" data-category="embarque">
+<div class="project__media slider">
+  <svg class="icon project__ph" aria-hidden="true"><use href="#i-chip"/></svg>
+  <img src="assets/photo-1.png" data-caption="Live dashboard" alt="SupervisionDashboard live view: simulated measurements, temperature gauge and real-time chart" loading="lazy" onerror="this.remove()" />
+  <img src="assets/photo-2.png" data-caption="History" alt="SupervisionDashboard history page with stored measurements" loading="lazy" onerror="this.remove()" />
+  <img src="assets/photo-3.png" data-caption="Alarms" alt="SupervisionDashboard alarms page with Warning and Critical levels" loading="lazy" onerror="this.remove()" />
+  <img src="assets/photo-4.png" data-caption="Settings" alt="SupervisionDashboard settings page" loading="lazy" onerror="this.remove()" />
+  <span class="project__chip">Embedded</span>
+  <span class="slider__caption"></span>
+  <div class="slider__dots" aria-hidden="true"></div>
+</div>    <div class="project__body">
+              <h3>Industrial Supervision Dashboard (SupervisionDashboard)</h3>
+              <p class="project__meta">Personal Project · Qt 6 / QML / C++17 · 20266</p>
+               <p>SupervisionDashboard is an industrial supervision desktop application that monitors a simulated electrical installation in real time. I built it with Qt 6, QML and C++17, and it needs no hardware: a built-in simulator replaces the sensors and produces live voltage, current, power and temperature measurements. These are displayed on real-time charts over a 60-second sliding window (Qt Graphs) and a temperature gauge, inside a QML interface with sidebar navigation and a light/dark theme. The C++ backend is cleanly separated from the QML front end. The application includes an alarm system with Warning and Critical levels, hysteresis and operator acknowledgment, and fault-injection buttons to test it. Measurements are stored in a SQLite history with CSV export, and user settings persist between sessions. To ensure software quality, I wrote unit tests with Qt Test and used their pass/fail results to validate both the application logic and the interface behavior. The project is built with CMake and versioned with Git and GitHub.<p>
+              <ul class="tags"><li>Qt 6</li><li>QML</li><li>C++17</li><li>Qt Graphs</li><li>Qt Test</li><li>SQLite (QtSql)</li><li>Git</li><li>CMake</li><li>Real-time monitoring</li><li>Unit testing</li></ul>
+            </div>
+          </article>
+
+          <article class="project reveal" data-category="embarque">
             <div class="project__media">
               <svg class="icon project__ph" aria-hidden="true"><use href="#i-chip"/></svg>
               <img src="assets/photo-1.png" alt="Multi-protocol test bench interface" loading="lazy" onerror="this.remove()" />
@@ -379,6 +397,21 @@
         <h2 class="reveal">Certifications </h2>
         <!-- The duplicated "Lean Manufacturing White Belt" entry was removed. -->
         <ul class="certs">
+            <li class="reveal">
+            <svg class="icon"><use href="#i-award"/></svg>
+            <div><h3>C++ Programming</h3><p>Saylor Academy · 2026</p></div>
+            <span class="link">ID: 6074865565NB</span>
+          </li>
+           <li class="reveal">
+            <svg class="icon"><use href="#i-award"/></svg>
+            <div><h3>Git</h3><p>TestDemo · 2026</p></div>
+            <span class="link">ID: 7e089362fc7646ae860cc20f4ce54ebe</span>
+          </li>
+           <li class="reveal">
+            <svg class="icon"><use href="#i-award"/></svg>
+            <div><h3>Essentials of MS Excel-Formulas</h3><p>UniAthena · 2026</p></div>
+            <span class="link">ID: 4982-9426-3432</span>
+          </li>
           <li class="reveal">
             <svg class="icon"><use href="#i-award"/></svg>
             <div><h3>Prompt Engineering & Programming with OpenAI</h3><p>Colombia + · 2026</p></div>
