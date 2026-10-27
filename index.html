@@ -255,11 +255,11 @@
   <span class="slider__caption"></span>
   <div class="slider__dots" aria-hidden="true"></div>
 </div>    <div class="project__body">
-              <h3>Industrial Supervision Dashboard (SupervisionDashboard)</h3>
-              <p class="project__meta">Personal Project · Qt 6 / QML / C++17 · 2026</p>
-               <p>SupervisionDashboard is an industrial supervision desktop application that monitors a simulated electrical installation in real time. I built it with Qt 6, QML and C++17, and it needs no hardware: a built-in simulator replaces the sensors and produces live voltage, current, power and temperature measurements. These are displayed on real-time charts over a 60-second sliding window (Qt Graphs) and a temperature gauge, inside a QML interface with sidebar navigation and a light/dark theme. The C++ backend is cleanly separated from the QML front end. The application includes an alarm system with Warning and Critical levels, hysteresis and operator acknowledgment, and fault-injection buttons to test it. Measurements are stored in a SQLite history with CSV export, and user settings persist between sessions. To ensure software quality, I wrote unit tests with Qt Test and used their pass/fail results to validate both the application logic and the interface behavior. The project is built with CMake and versioned with Git and GitHub.</p>
-              <ul class="tags"><li>Qt 6</li><li>QML</li><li>C++17</li><li>Qt Graphs</li><li>Qt Test</li><li>SQLite (QtSql)</li><li>Git</li><li>CMake</li><li>Real-time monitoring</li><li>Unit testing</li></ul>
-            </div>
+  <h3>Industrial Supervision Dashboard</h3>
+  <p class="project__meta">Personal Project · Qt 6 / QML / C++17 / MQTT / Python· 2026</p>
+  <p>SupervisionDashboard is an industrial supervision desktop application that monitors a simulated electrical installation in real time, including voltage, current, power, and temperature. I built it with Qt 6, QML and C++17, and it needs no hardware: a simulator replaces the sensors and produces live measurements. I implemented MQTT communication between a Python-based data simulator running on Linux and the Qt application to publish and receive the simulated sensor measurements. These are displayed on real-time charts over a 60-second sliding window (Qt Graphs) and a temperature gauge, inside a QML interface with sidebar navigation and a light/dark theme. The C++ backend is cleanly separated from the QML front end. The application includes an alarm system with Warning and Critical levels, hysteresis and operator acknowledgment, and fault-injection buttons to test it. Measurements are stored in a SQLite history with CSV export, and user settings persist between sessions. To ensure software quality, I wrote unit tests with Qt Test and used their pass/fail results to validate both the application logic and the interface behavior. The project is built with CMake and versioned with Git and GitHub.</p>
+  <ul class="tags"><li>Qt 6</li><li>QML</li><li>C++17</li><li>Qt Graphs</li><li>Qt Test</li><li>SQLite (QtSql)</li><li>MQTT</li><li>Python</li><li>Linux</li><li>Git</li><li>CMake</li><li>Real-time monitoring</li><li>Unit testing</li></ul>
+</div>
           </article>
 
           <article class="project reveal" data-category="embarque">
@@ -268,12 +268,70 @@
               <img src="assets/photo-1.png" alt="Multi-protocol test bench interface" loading="lazy" onerror="this.remove()" />
               <span class="project__chip">Embedded</span>
             </div>
-            <div class="project__body">
-              <h3>Multi-Protocol Interfaces for a Test Bench</h3>
-              <p class="project__meta">Final-year internship · SERMA International · Feb – Jul 2026</p>
-              <p>Developed Qt/C++ interfaces for RAM/FRAM data acquisition over RS-232 and real-time communication on the CAN/CAN FD bus. Designed a dual-process architecture with IPC to eliminate latency and reach sub-millisecond timing accuracy. Built a qualification interface for aeronautical equipment with NI USB-6001 signal acquisition and automatic test report generation.</p>
-              <ul class="tags"><li>C++</li><li>Qt</li><li>CAN / CAN FD</li><li>RS-232</li><li>IPC</li><li>NI USB-6001</li><li>Scrumban</li><li>Jira</li></ul>
-            </div>
+          <div class="project__body">
+  <h3>Multiprotocol Communication &amp; Test Qualification Interfaces</h3>
+  <p class="project__meta">
+    Final-year internship · SERMA International · Feb – Jul 2026
+  </p>
+
+  <p>
+    Developed a suite of <strong>Qt/C++</strong> interfaces for the 
+    communication, acquisition, and qualification of a safety-critical 
+    aeronautical embedded system (Airbus Helicopters).
+  </p>
+
+  <!-- CAN -->
+  <p><strong>CAN/CAN FD Interface — Real-Time Communication</strong></p>
+  <p>
+    Implemented a real-time CAN/CAN FD communication interface using 
+    the PEAK PCAN-FD Pro adapter and PCAN-Basic API. Diagnosed periodic 
+    latency spikes up to <strong>173 ms</strong> on a 50 ms cyclic frame, 
+    caused by Qt event loop contention. Resolved by designing a 
+    <strong>dual-process IPC architecture</strong>: the CAN engine runs 
+    as a headless <code>QCoreApplication</code> communicating with the 
+    GUI via a <code>QLocalSocket</code> JSON pipe, while the TX thread 
+    uses a native Windows thread with <code>QueryPerformanceCounter</code> 
+    for <strong>sub-millisecond timing accuracy</strong>. Validated on a 
+    hardware bench with an <strong>STM32F407</strong> — stable transmission 
+    confirmed at 10, 20, and 50 ms cyclic periods with gap deviations 
+    under ±1 ms.
+  </p>
+
+  <!-- RS-232 -->
+  <p><strong>RS-232 Interface — Memory Acquisition</strong></p>
+  <p>
+    Built a layered Qt/C++ interface for reading and writing the 
+    embedded system's <strong>RAM and FRAM (NVM) memory</strong> via 
+    RS-232, using a proprietary SERMA frame format with automatic 
+    checksum calculation. Supports six dedicated memory commands 
+    (READ/WRITE FRAM, READ/WRITE RAM, READ SECTOR).
+  </p>
+
+  <!-- Qualification -->
+  <p><strong>Qualification Interface — Test Bench Automation</strong></p>
+  <p>
+    Designed a qualification interface integrating signal acquisition 
+    via <strong>NI USB-6001</strong> (NI-DAQmx API), power supply 
+    control via a custom RS-232 driver developed from the TTI CPX400DP 
+    programming manual, and automatic <strong>test report 
+    generation</strong>. Loads configuration files, runs qualification 
+    scenarios automatically and logs timestamped results — compliant 
+    with <strong>DO-160</strong> aeronautical standards.
+  </p>
+
+  <ul class="tags">
+    <li>Qt/C++</li>
+    <li>CAN / CAN FD</li>
+    <li>RS-232</li>
+    <li>IPC</li>
+    <li>STM32F407</li>
+    <li>PCAN-Basic API</li>
+    <li>NI USB-6001</li>
+    <li>DO-160</li>
+    <li>Scrumban</li>
+    <li>Jira</li>
+  </ul>
+</div>
           </article>
 
           <article class="project reveal" data-category="puissance">
